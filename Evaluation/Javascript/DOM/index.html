@@ -11,21 +11,21 @@
 <div id="demo"></div>
 <img  id="img" src="mon.png" alt="img" width="160" height="160">
 
-<div id="div1"></div>
+<ul id="ul"></ul>
 <button onclick="change()">change image</button>
 
 <script>
-    function change() {
+     change = () => {
         document.getElementById("img").src = "china.png";
 
 }
      document.getElementById("demo").innerHTML = "Hello world!";
     
-    //  const para = document.createElement("p");
-    //  const node = document.createTextNode("this is a new paragraph");
-    //  para.appendChild(node);
-    //  const element = document.getElementById("div1");
-    //  element.appendChild(para);
+     const li = document.createElement("li");
+     const text = document.createTextNode("This is the best photo from AI ");
+     li.appendChild(text);
+     const element = document.getElementById("ul");
+     element.appendChild(li);
 
 </script>
 </body>
