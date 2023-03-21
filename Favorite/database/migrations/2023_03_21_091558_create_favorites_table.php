@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('favorites', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('image');
+            $table->integer('timePreparation');
+            $table->integer('Number');
             $table->timestamps();
         });
     }

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <input type="text" placeholder="Search with food name" id="search">
+    <button onclick="getrecepe(document.getElementById('search').value)">Search</button>
+    <div id="output">
+        <a href=" " id="sourceLink"></a>
+
+    </div>
+    <!-- <div id="all"></div> -->
+    <!-- <h1 id="al"></h1> -->
+    <script>
+        function getsource(id) {
+
+
+            $.ajax({
+                url: "https://api.spoonacular.com/recipes/"+ id +"/information?apiKey=88cbb41354b04d13858d7f377e338113",
+                success: function (res) {
+
+                        document.getElementById("sourceLink").innerHTML += res.sourceUrl 
+                        document.getElementById("sourceLink").href += res.sourceUrl
+                }
+            });
+        }
+        // function getvitamin(id) {
+
+        // $.ajax({
+        //         url: " https://api.spoonacular.com/recipes/"+ id +"/nutritionWidget.json?apiKey=88cbb41354b04d13858d7f377e338113",
+        //         success: function (res) {
+        //             res.good.map((item)=>{
+        //                 const title =  item.title
+        //                 return(
+
+        //                     document.getElementById("all").innerHTML =  `<h3> Vitamin ${title} d ${id}<h3/>`
+        //                         )
+        //             });
+
+        //         }
+                       
+        //             })
+                
+           
+        // }
+        
+//         function getprice(id) {
+
+// $.ajax({
+//         url: " https://api.spoonacular.com/recipes/"+id+"/priceBreakdownWidget.json?apiKey=88cbb41354b04d13858d7f377e338113",
+//         success: function (res) {
+//             document.getElementById("al").innerHTML = res.ingredients[0].price
+//             // document.getElementById("all").href = res.sourceUrl
+//         }
+//     });
+// }
+        
+        function getrecepe(search,id) {
+            $.ajax({
+                url: "https://api.spoonacular.com/food/menuItems/search?apiKey=88cbb41354b04d13858d7f377e338113&query=" +search+ "&number=25",
+                // url: "https://api.spoonacular.com/recipes/"+ id +"/information?apiKey=88cbb41354b04d13858d7f377e338113",
+                // "https://api.spoonacular.com/recipes/search?apiKey=88cbb41354b04d13858d7f377e338113&number=1&query=" + search,
+                success: function (res) {
+                    let showData = document.getElementById("output")
+                    res.menuItems.map((item)=>{
+                        const id = item.id
+                        const title = item.title;
+                        const image =  item.image;
+                        // const min = item.readyInMinutes;
+                            showData.innerHTML += `<h1> ${title} <h1/>
+                                <img src='${image}'/>
+                                <p> Ready in ${id} minutes <p/>
+                                    ${getsource(id)}`
+                                    
+                            // getvitamin(id)
+                            // getprice(id)
+
+        });
+                }
+
+            });
+        }
+// #0C2D41
+    </script>
+</body>
+
+</html>

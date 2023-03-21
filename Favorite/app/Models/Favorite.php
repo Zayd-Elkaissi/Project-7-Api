@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Favorite extends Model
 {
     use HasFactory;
+
+    protected $table = "favorite";
+    
+    protected $fillable = [
+        "name",
+        "image",
+        "timePreparation",
+        "Number"
+    ];
+
+    public $timestamps= false;
 }
