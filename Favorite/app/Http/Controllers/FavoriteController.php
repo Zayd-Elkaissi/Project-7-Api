@@ -12,7 +12,8 @@ class FavoriteController extends Controller
      */
     public function index()
     {
-        //
+        $Favorite = Favorite::all();
+        return $Favorite;
     }
 
     /**
@@ -28,13 +29,18 @@ class FavoriteController extends Controller
      */
     public function store(Request $request)
     {
-        $concert = Favorite::create([
+        Favorite::create([
 
             'name' => $request->foodName,
             'image'=> $request->foodImg,
             'timePreparation' => $request->timePreparation,
             'Number' => $request->Number
-        ])->save();
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'favorites' => $this->all()
+        ]);
     }
 
     /**
@@ -66,6 +72,7 @@ class FavoriteController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $favorite = Favorite::find($id);
+        $favorite->delete();
     }
 }
